@@ -2,7 +2,7 @@ package com.ashwinbhatt.CabBooking.services;
 
 import com.ashwinbhatt.CabBooking.exceptions.RiderException;
 import com.ashwinbhatt.CabBooking.models.Rider;
-import com.sun.istack.NotNull;
+import com.sun.istack.NonNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.Optional;
 public class RiderService {
     private final List<Rider> ridersRepository;
 
-    public String addRider(@NotNull String name){
+    public String addRider(@NonNull String name){
         Rider rider= new Rider(name);
         ridersRepository.add(rider);
         return rider.getRiderId();
     }
 
-    public Rider findRider(@NotNull String riderId) throws RiderException {
+    public Rider findRider(@NonNull String riderId) throws RiderException {
         Optional<Rider> riderOptional= ridersRepository.stream()
                 .filter(rider -> rider.getRiderId().equals(riderId))
                 .findAny();

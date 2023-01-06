@@ -11,7 +11,7 @@ import com.ashwinbhatt.CabBooking.strategies.DriverFindStrategy;
 import com.ashwinbhatt.CabBooking.strategies.EuclidienFindStrategy;
 import com.ashwinbhatt.CabBooking.strategies.PricingStrategy;
 import com.ashwinbhatt.CabBooking.strategies.SimplePricingStrategy;
-import com.sun.istack.NotNull;
+import com.sun.istack.NonNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class CabAppService {
     public final DriverFindStrategy driverFindStrategy;
     public final PricingStrategy pricingStrategy;
 
-    public Trip createTrip(@NotNull String riderId, @NotNull Location riderLocation, Location destinationLocation) {
+    public Trip createTrip(@NonNull String riderId, @NonNull Location riderLocation, Location destinationLocation) {
         Rider rider;
         Driver driver;
         try {
@@ -50,7 +50,7 @@ public class CabAppService {
         return trip;
     }
 
-    public Rider registerRider(@NotNull String name) {
+    public Rider registerRider(@NonNull String name) {
         String riderId= riderService.addRider(name);
         try {
             return riderService.findRider(riderId);
@@ -60,7 +60,7 @@ public class CabAppService {
         }
     }
 
-    public Driver registerDriver(@NotNull String name, @NotNull String registrationNumber){
+    public Driver registerDriver(@NonNull String name, @NonNull String registrationNumber){
         String driverId= driverService.addDriver(name, registrationNumber);
         try {
             return driverService.findDriver(driverId);
@@ -70,7 +70,7 @@ public class CabAppService {
         }
     }
 
-    public boolean updateDriverLocation(@NotNull String driverId, @NotNull Location updatedLocation) {
+    public boolean updateDriverLocation(@NonNull String driverId, @NonNull Location updatedLocation) {
         try{
             driverService.setDriverLocation(driverId, updatedLocation);
             driverFindStrategy.addDriver(driverId, updatedLocation);
@@ -81,7 +81,7 @@ public class CabAppService {
         }
     }
 
-    public boolean makeDriverAvailable(@NotNull String driverId){
+    public boolean makeDriverAvailable(@NonNull String driverId){
         try {
             driverService.changeDriverAvailabilityStatus(driverId, true);
         } catch (DriverException driverException) {
@@ -91,7 +91,7 @@ public class CabAppService {
         return true;
     }
 
-    public boolean makeDriverUnavailable(@NotNull String driverId){
+    public boolean makeDriverUnavailable(@NonNull String driverId){
         try {
             driverService.changeDriverAvailabilityStatus(driverId, false);
             driverFindStrategy.removeDriver(driverId);
@@ -102,7 +102,7 @@ public class CabAppService {
         return true;
     }
 
-    public List<Trip> fetchRiderHistory(@NotNull String riderId){
+    public List<Trip> fetchRiderHistory(@NonNull String riderId){
         try {
             riderService.findRider(riderId);
         } catch (RiderException e) {
@@ -112,7 +112,7 @@ public class CabAppService {
         return tripService.riderHistory(riderId);
     }
 
-    public boolean endTrip(@NotNull String tripId){
+    public boolean endTrip(@NonNull String tripId){
         try {
             tripService.endTrip(tripId);
             Trip trip= tripService.findTrip(tripId);

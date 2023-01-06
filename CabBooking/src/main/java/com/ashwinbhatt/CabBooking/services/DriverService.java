@@ -3,7 +3,7 @@ package com.ashwinbhatt.CabBooking.services;
 import com.ashwinbhatt.CabBooking.exceptions.DriverException;
 import com.ashwinbhatt.CabBooking.models.Driver;
 import com.ashwinbhatt.CabBooking.models.Location;
-import com.sun.istack.NotNull;
+import com.sun.istack.NonNull;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class DriverService {
         driverRepository= new LinkedList<>();
     }
 
-    public String addDriver(@NonNull String name,@NotNull String registrationNumber){
+    public String addDriver(@NonNull String name,@NonNull String registrationNumber){
         Driver driver= new Driver(name, registrationNumber);
         driverRepository.add(driver);
         return driver.getDriverId();
@@ -35,12 +35,12 @@ public class DriverService {
         return driverOption.get();
     }
 
-    public void setDriverLocation(@NonNull String driverId,@NotNull Location location) throws DriverException {
+    public void setDriverLocation(@NonNull String driverId,@NonNull Location location) throws DriverException {
         Driver driver= findDriver(driverId);
         driver.setLocation(location);
     }
 
-    public void changeDriverAvailabilityStatus(@NotNull String driverId, @NotNull Boolean availabilityStatus) throws DriverException {
+    public void changeDriverAvailabilityStatus(@NonNull String driverId, @NonNull Boolean availabilityStatus) throws DriverException {
         Driver driver= findDriver(driverId);
         driver.setAvailabilityStatus(availabilityStatus);
     }
