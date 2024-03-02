@@ -1,3 +1,6 @@
 /.idea/
 /Cache/target/
 /Cache/Cache.iml
+/numberprinter/.idea
+/numberprinter/target
+/numberprinter/numberprinter.iml
