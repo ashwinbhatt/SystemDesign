@@ -3,8 +3,11 @@ package com.ashwinbhatt.systemdesign.lockermanagementsystem.repositories;
 import com.ashwinbhatt.systemdesign.lockermanagementsystem.exceptions.DeliveryUserRepoException;
 import com.ashwinbhatt.systemdesign.lockermanagementsystem.models.DeliveryUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DeliveryUserRepo {
 
@@ -24,8 +27,12 @@ public class DeliveryUserRepo {
     public DeliveryUser getDeliveryUser(String deliveryUserId) throws DeliveryUserRepoException {
         DeliveryUser deliveryUser = deliveryUserRepoMap.get(deliveryUserId);
         if(deliveryUser == null) {
-            throw new DeliveryUserRepoException(String.format("Delivery user with id: <%s>, already exist", deliveryUser.getUserId()));
+            throw new DeliveryUserRepoException(String.format("Delivery user with id: <%s>, don't exist", deliveryUser.getUserId()));
         }
         return deliveryUser;
+    }
+
+    public List<String> getAllDeliveryUser() {
+        return new ArrayList<>(deliveryUserRepoMap.keySet());
     }
 }

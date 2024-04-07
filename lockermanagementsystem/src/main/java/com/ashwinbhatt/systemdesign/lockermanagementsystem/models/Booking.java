@@ -1,5 +1,6 @@
 package com.ashwinbhatt.systemdesign.lockermanagementsystem.models;
 
+import com.ashwinbhatt.systemdesign.lockermanagementsystem.service.BookingTypes;
 import lombok.Getter;
 
 @Getter
@@ -12,8 +13,9 @@ public class Booking {
     private final LockerSlot lockerSlot;
     private final String otp;
     private final Integer startDate;
+    private final BookingTypes bookingTypes;
 
-    public Booking(String bookingId, BookingUser bookingUser, DeliveryUser deliveryUser, Item item, LockerSlot lockerSlot, String otp, Integer startDate) {
+    public Booking(String bookingId, BookingUser bookingUser, DeliveryUser deliveryUser, Item item, LockerSlot lockerSlot, String otp, Integer startDate, BookingTypes bookingTypes) {
         this.bookingId = bookingId;
         this.bookingUser = bookingUser;
         this.deliveryUser = deliveryUser;
@@ -21,5 +23,6 @@ public class Booking {
         this.lockerSlot = lockerSlot;
         this.otp = otp;
         this.startDate = startDate;
+        this.bookingTypes = bookingTypes;
     }
 }

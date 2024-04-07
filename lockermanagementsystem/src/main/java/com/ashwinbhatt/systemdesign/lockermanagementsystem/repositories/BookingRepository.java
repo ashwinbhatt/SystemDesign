@@ -15,14 +15,14 @@ public class BookingRepository {
         bookingMap = new HashMap();
     }
 
-    public void addBookingUser(Booking booking) throws BookingUserRepoException {
+    public void addBooking(Booking booking) throws BookingUserRepoException {
         if(bookingMap.containsKey(booking.getBookingId())) {
             throw new BookingUserRepoException(String.format("Booking with id: <%s>, already exist", booking.getBookingId()));
         }
         bookingMap.put(booking.getBookingId(), booking);
     }
 
-    public Booking getBookingUser(String bookingId) throws BookingUserRepoException {
+    public Booking getBooking(String bookingId) throws BookingUserRepoException {
         Booking bookingUser = bookingMap.get(bookingId);
         if(bookingUser == null) {
             throw new BookingUserRepoException(String.format("Booking with id: <%s>, don't exist", bookingUser.getBookingId()));
